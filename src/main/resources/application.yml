@@ -1,0 +1,41 @@
+server:
+  port: 8183
+
+basic-api:
+  app:
+    jwtSecret: bezKoderSecretKey
+    jwtExpirationMs: 86400000
+
+spring:
+  # Security configuration
+  security:
+    user:
+      name: user
+      password: user
+  jpa:
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.jdbc.batch_size: 20
+      hibernate.cache.use_query_cache: false
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_structured_entries: false
+      hibernate.cache.use_minimal_puts: false
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate.jdbc.lob.non_contextual_creation: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/testdb
+    username: testuser
+    password: testpassword
+    driverClassName: org.postgresql.Driver
+logging:
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+  level:
+    org.springframework: info
+    org.hibernate: debug
